@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>LNVAE</title>
+  <title>TARVAE</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,20 +47,30 @@
             <div class="layui-row">
               <blockquote class="layui-elem-quote layui-text">
                   <h1>Abstract</h1>
-         <p class="site-h1">Multimodal Sentiment Analysis (MSA) stands as a critical research frontier, seeking to comprehensively unravel human emotions by amalgamating text, audio, and visual data. Yet, discerning subtle emotional nuances within audio and video expressions poses a formidable challenge, particularly when emotional polarities across various segments appear similar. In this paper, our objective is to spotlight emotion-relevant attributes of audio and visual modalities to facilitate multimodal fusion in the context of nuanced emotional shifts in visual-audio scenarios. To this end, we introduce DEVA, a progressive fusion framework founded on textual sentiment descriptions aimed at accentuating emotional features of visual-audio content. DEVA employs an Emotional Description Generator (EDG) to transmute raw audio and visual data into textualized sentiment descriptions, thereby amplifying their emotional characteristics. These descriptions are then integrated with the source data to yield richer, enhanced features. Furthermore, DEVA incorporates the Text-guided Progressive Fusion Module (TPF), leveraging varying levels of text as a core modality guide. This module progressively fuses visual-audio minor modalities to alleviate disparities between text and visual-audio modalities. Experimental results on widely used sentiment analysis benchmark datasets, including MOSI, MOSEI, and CH-SIMS, underscore significant enhancements compared to state-of-the-art models. Moreover, fine-grained emotion experiments corroborate the robust sensitivity of DEVA to subtle emotional variations.</p>
-         <h1>Diagram and example of VIDSR </h1>
+         <p class="site-h1">
+Dysarthric speech reconstruction (DSR) aims to enhance the intelligibility of dysarthric speech, which is challenging due to the significant acoustic space differences between dysarthric and normal speech. The dysarthric speech is characterized by its long-range dependencies and non-stationary features, including discontinuous pronunciation, slow speech, and improper pauses during the pronunciation. Current research on DSR task, primarily based on voice conversion, depends on specialized encoders, complex auxiliary strategies, and text annotations.  In this paper, we propose a DSR model named Text-free Alignment and Regularization via Variational Autoencoder (TAR-VAE), which leverages self-supervised learning (SSL) features alignment and regularization mechanisms within a conditional variational autoencoder with Adversarial Learning for Dysarthric speech reconstruction. TAR-VAE employs a SSL Features Mapping Encoder to align dysarthric and normal speech SSL features by capturing both local dynamics and global dependencies. To further reduce the distributional gap between dysarthric and normal speech, a Dysarthric Regularization Mechanism is introduced, which ensures that the prior distributions inferred from dysarthric speech closely match the parallel normal speech. Additionally, a Duration Alignment Predictor is developed to model long-range temporal patterns, aligning the durations of dysarthric speech with natural prosody. Experimental results on the benchmark UASpeech corpus demonstrate that TAR-VAE achieves state-of-the-art performance, thoroughly validating the effectiveness and advancements of the proposed method in dysarthric speech reconstruction.
+         </p>
+         <h1>Diagram and example of TAR-VAE </h1>
                  <div style="text-align: center">
-                  <img  src="unit_dsr_demo_site/images/Unit-DSR-demo/unit-dsr6.jpg" width="60%">
+                  <img  src="img/framework.png" width="60%">
               </div>
                     <h1>System Comparison  </h1>
 
                    <ul>
-                        <li><span class="label">Original:</span> Unprocessed dysarthric speech.</li>
+                        <li><span class="label">Original:</span> Original dysarthric speech.</li>
                         <li><span class="label">Reference:</span> Healthy speech from control speaker CF02.</li>
-                        <li><span class="label">ASR-TTS:</span> A cascaded dysarthria reconstruction system employing a HuBERT-CTC automatic speech recognition (ASR) model and a Tacotron 2 text-to-speech (TTS) model, followed by a HiFi-GAN vocoder for waveform synthesis.</li>
-                        <li><span class="label">E2E-DSR:</span> An end-to-end dysarthric speech reconstruction framework based on cross-modal knowledge distillation.</li>
-                        <li><span class="label">ASA-DSR:</span> A dysarthric speech reconstruction system incorporating adversarial speaker adaptation to preserve speaker identity. A dysarthria-adapted ASR model serves as the content encoder.</li>
-                        <li><span class="label">Unit-DSR (Proposed):</span> A unit-based dysarthric speech reconstruction approach. The model is fine-tuned from a pre-trained HuBERT representation model using a multi-stage training strategy. A unit-based HiFi-GAN vocoder is used for waveform generation.</li>
+                        <li><span class="label">ASR-TTS:</span>
+                            A two-stage ASR-TTS system, transcribes dysarthric speech using a multilingual HuBERT-CTC model and then synthesizes normal speech via Tacotron 2 and a HiFi-GAN vocoder.
+                        </li>
+                        <li><span class="label">E2E-DSR:</span>
+                        A three-stage knowledge distillation framework, where a seq2seq TTS model is first trained on normal speech, then used to guide a speech encoder via cross-modal distillation, and finally combined to directly convert dysarthric speech into intelligible speech.
+                        </li>
+                        <li><span class="label">ASA-DSR:</span>
+A multi-task learning strategy that fine-tunes the speaker encoder to capture target speaker identity while using adversarial training to ensure reconstructed speech matches the distribution of high-quality reference speech.
+                        </li>
+                        <li><span class="label">Unit-DSR:</span>
+                        A multi-stage training approach that leverages the domain adaptation capabilities of HuBERT to enhance training efficiency and  utilizes discrete speech units to constrain the restoration of dysarthric speech content within a discrete linguistic space.
+                        </li>
                       </ul>
               </blockquote>
 
